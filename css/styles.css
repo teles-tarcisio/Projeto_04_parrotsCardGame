@@ -6,6 +6,47 @@ body {
     background-color: #eef9bf;
 }
 
+.game-title {
+    margin: 40px auto 47px auto;
+    text-align: center;
+    text-justify: center;
+    border: 1px dashed lightslategray;
+}
+
+.game-title h1 {
+    font-family: "Roboto", sans-serif;
+    font-weight: 700;
+    color: #75b79e;
+    font-size: 56px;
+}
+
 .main-content {
-    border: 2px dashed blue;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    align-items: center;
+    border: 1px dashed blue;
+}
+
+.card {
+    width: 117px;
+    height: 146px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5px;
+    background-color: #a7e9af;
+    border: 1px solid #99cea8;
+}
+
+.card img {
+    width: 100px;
+    height: 100px;
+}
+
+
+@media (max-width: 335px) {
+    .main-content {
+        flex-direction: column;
+    }
 }
