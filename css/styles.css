@@ -1,0 +1,11 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #eef9bf;
+}
+
+.main-content {
+    border: 2px dashed blue;
+}
