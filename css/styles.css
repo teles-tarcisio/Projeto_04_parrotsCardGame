@@ -44,6 +44,56 @@ body {
     height: 100px;
 }
 
+/*--------------------------------------------------*/
+/*
+.card-frame {
+    width: 100%;
+    height: 100%;
+    background-color: lightskyblue;// #A7E9AF;
+    border-radius: 10px;
+    box-shadow: 1px 1px 1px rgba(0,0,0,.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    backface-visibility: hidden;
+    transition: all .5s;
+    transform-style: preserve-3d;
+}
+
+.flippable-card {
+    width: 117px;
+    height: 146px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+
+
+.verso {
+    transform: rotateY(180deg);
+  }
+
+.verso2 {
+    transform: rotateY(0deg);
+  }
+
+.frente {
+    transform: rotateY(-180deg);
+  }
+
+.black-bg {
+    background-color: black;
+    opacity: 0.75;
+}
+
+
+*/
+
+/*--------------------------------------------------*/
+
 
 @media (max-width: 335px) {
     .main-content {
