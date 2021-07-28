@@ -8,6 +8,7 @@ body {
 
 .game-title {
     margin: 40px auto 47px auto;
+    max-width: 1080px;
     text-align: center;
     text-justify: center;
     border: 1px dashed lightslategray;
@@ -21,6 +22,8 @@ body {
 }
 
 .main-content {
+    max-width: 1080px;
+    margin: auto;
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
@@ -31,6 +34,7 @@ body {
 .card {
     width: 117px;
     height: 146px;
+    margin: 17px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -97,6 +101,7 @@ body {
 
 @media (max-width: 335px) {
     .main-content {
+        max-width: 335px;
         flex-direction: column;
     }
 }

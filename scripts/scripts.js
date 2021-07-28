@@ -10,28 +10,40 @@ function askQuantity() {
 
 }
 
+const gameCards = [];
+console.log("array length: " + gameCards.length);
 
-createCard(numberOfCards);
-function createCard(quantity) {
+createCardSlots(numberOfCards);
+
+function createCardSlots(quantity) {
     let newDivCard;
     let newImg;
     for (counter = 0; counter < quantity; counter++) {
-        console.log("counter: " + counter);
+        //create <div>:
         newDivCard = document.createElement("div");
         newDivCard.className = "card";
-        //newDivCard.setAttribute("onclick", "createCard()");
+        /*newDivCard.setAttribute("onclick", "functionToCall()");*/
+
+        //create <img>:
         newImg = document.createElement("img");
         newImg.setAttribute("src", "images/front.png");
+        
+        //<img> inside <div> :
         newDivCard.appendChild(newImg);
-        document.querySelector(".main-content").appendChild(newDivCard);
-        console.log(document.querySelector(".main-content").childNodes);        
+        gameCards[counter] = newDivCard;
+        
+        //document.querySelector(".main-content").appendChild(newDivCard);
+
+        document.querySelector(".main-content").appendChild(gameCards[counter]);
     }
-    
 }
 
-
-
-
+/*
+SID: Cara achei interessante a forma que você abordou o problema.
+Acredito que armazenar o div por completo, talvez possa complicar
+na hora de embaralhar as cartas, uma alternativa seria armazenar
+apenas o caminho da imagem no array e gerar as divs por outra função. Entende?
+ */
 
 /*
 function flip(card) {
