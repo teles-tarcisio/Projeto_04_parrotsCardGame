@@ -17,6 +17,7 @@ function askQuantity() {
 
 const gameCards = [];
 console.log("array length: " + gameCards.length);
+//function shuffleArrayofCards(quantity) 
 
 //# of divs == # of cards: (the div contains the array element)
 createCardSlots(numberOfCards);
@@ -30,11 +31,19 @@ function createCardSlots(quantity) {    //creates # of divs according to user in
         
         //newDivCard.setAttribute( ... )
 
-        //create and add deck image (parrot):
+        //create and add front <img> (parrot):
         newImg = document.createElement("img");
-        newImg.setAttribute("src", "images/front.png");
-
+        newImg.setAttribute("src", "images/front_deck.png");
+        newImg.className = "default-deck-image";
         newDivCard.appendChild(newImg);
+
+        //create and add back <img> (gif):
+        newImg = document.createElement("img");
+        newImg.setAttribute("src", "images/bobrossparrot.gif");
+        newImg.className = "bob";
+        newDivCard.appendChild(newImg);
+
+        //append card-slot-div to main-content div:
         document.querySelector(".main-content").appendChild(newDivCard);
     }
 }
