@@ -31,7 +31,7 @@ body {
     border: 1px dashed blue;
 }
 
-.card {
+.card-slot {
     width: 117px;
     height: 146px;
     margin: 17px;
@@ -43,7 +43,7 @@ body {
     border: 1px solid #99cea8;
 }
 
-.card img {
+.card-slot img {
     width: 100px;
     height: 100px;
 }

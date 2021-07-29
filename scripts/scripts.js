@@ -10,52 +10,37 @@ function askQuantity() {
 
 }
 
+
+//structure:
+//  array element contains gifs and "content" of the card;
+//      div contains ONE front img and ONE array element!
+
 const gameCards = [];
 console.log("array length: " + gameCards.length);
 
+//# of divs == # of cards: (the div contains the array element)
 createCardSlots(numberOfCards);
-
-function createCardSlots(quantity) {
+function createCardSlots(quantity) {    //creates # of divs according to user input
     let newDivCard;
     let newImg;
     for (counter = 0; counter < quantity; counter++) {
         //create <div>:
         newDivCard = document.createElement("div");
-        newDivCard.className = "card";
-        /*newDivCard.setAttribute("onclick", "functionToCall()");*/
+        newDivCard.className = "card-slot";
+        
+        //newDivCard.setAttribute( ... )
 
-        //create <img>:
+        //create and add deck image (parrot):
         newImg = document.createElement("img");
         newImg.setAttribute("src", "images/front.png");
-        
-        //<img> inside <div> :
-        newDivCard.appendChild(newImg);
-        gameCards[counter] = newDivCard;
-        
-        //document.querySelector(".main-content").appendChild(newDivCard);
 
-        document.querySelector(".main-content").appendChild(gameCards[counter]);
+        newDivCard.appendChild(newImg);
+        document.querySelector(".main-content").appendChild(newDivCard);
     }
 }
 
 /*
-SID: Cara achei interessante a forma que você abordou o problema.
-Acredito que armazenar o div por completo, talvez possa complicar
-na hora de embaralhar as cartas, uma alternativa seria armazenar
+SID: armazenar o div por completo, talvez possa complicar
+na hora de embaralhar as cartas, alternativa seria armazenar
 apenas o caminho da imagem no array e gerar as divs por outra função. Entende?
  */
-
-/*
-function flip(card) {
-    card.classList.toggle("black-bg");
-    if (!card.classList.contains("frente")) {
-        card.classList.add("frente");
-        card.classList.add("verso2");
-    }
-    else if (card.classList.contains("verso")) {
-        card.classList.remove("verso");
-        card.classList.add
-        card.classList.add("frente");
-    }
-}
-*/
