@@ -32,6 +32,8 @@ body {
 }
 
 .card-slot {
+    width: 119px;
+    height: 148px;
     margin: 17px;
 }
 
@@ -68,19 +70,12 @@ body {
 
 }
 
-.black-bg {
-    background-color: black;
-    opacity: 0.25;
-    
-}
-
-
 
 /*--------------------------------------------------*/
 
 
 @media (max-width: 335px) {
-    .main-containter {
+    .main-container {
         max-width: 335px;
         flex-direction: column;
     }

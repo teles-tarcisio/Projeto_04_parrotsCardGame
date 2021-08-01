@@ -56,28 +56,59 @@ function distributeCards(quantity) {
 //# of divs == # of cards: (the div contains the array element)
 createCardSlots(numberOfCards);
 function createCardSlots(quantity) {    //creates # of divs according to user input
-    let newDivCard;
+    let newCardSlot;
+    let newCardFrame;
     let newImg;
-    for (i = 0; i < quantity; i++) {
-        //create <div>:
-        newDivCard = document.createElement("div");
-        newDivCard.className = "card-slot";
 
-        //newDivCard.setAttribute( ... )
+    for (i = 0; i < quantity; i++) {
+        //create <div> card-slot:
+        newCardSlot = document.createElement("div");
+        newCardSlot.className = "card-slot";
+        newCardSlot.setAttribute("onclick", "flipCard(this)");
+
+        //create <div> card-frame (front):
+        newCardFrame = document.createElement("div");
+        newCardFrame.className = "card-frame front-up";
 
         //create and add front <img> (parrot):
         newImg = document.createElement("img");
         newImg.setAttribute("src", "images/front_deck.png");
-        newImg.className = "default-deck-image";
-        newDivCard.appendChild(newImg);
+        newCardFrame.appendChild(newImg);
+        
+        newCardSlot.appendChild(newCardFrame);
+
+        //create <div> card-frame (back):
+        newCardFrame = document.createElement("div");
+        newCardFrame.className = "card-frame back-down";
 
         //create and add back <img> (gif):
         newImg = document.createElement("img");
         newImg.setAttribute("src", gameCards[i]);
-        newImg.className = "bob";
-        newDivCard.appendChild(newImg);
+        newCardFrame.appendChild(newImg);
 
-        //append card-slot-div to main-content div:
-        document.querySelector(".main-container").appendChild(newDivCard);
+        newCardSlot.appendChild(newCardFrame);
+
+
+        //append card-frame to card-slot:
+        document.querySelector(".main-container").appendChild(newCardSlot);
+    }
+}
+
+function flipCard(element) {            
+    let cardFront = element.querySelector(".front-up");
+    let cardBack = element.querySelector(".back-down");
+    if (cardFront !== null && cardBack !== null) {
+        cardFront.classList.replace("front-up", "front-down");
+        cardBack.classList.replace("back-down", "back-up");
+        return;
+    }
+
+    cardFront = element.querySelector(".front-down");
+    cardBack = element.querySelector(".back-up");
+    if (cardFront !== null && cardBack !== null) {
+        //element.classList.toggle("black-bg");
+        cardFront.classList.replace("front-down", "front-up");
+        cardBack.classList.replace("back-up", "back-down");
+        return;
     }
 }
