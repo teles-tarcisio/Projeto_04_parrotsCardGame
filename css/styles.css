@@ -55,18 +55,23 @@ body {
     height: 100px;
 }
 
-.front {
+.back-down {
     transform: rotateY(180deg);
-
 }
 
-.back {
+.front-down {
+    transform: rotateY(-180deg);
+}
+
+.back-up {
     transform: rotateY(0deg);
+
 }
 
 .black-bg {
     background-color: black;
-    opacity: 0.75;
+    opacity: 0.25;
+    
 }
 
 

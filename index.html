@@ -27,12 +27,12 @@
             <!-- img: parrot (default) -->
             <!-- img: gif -->
             <!-- /div   -->
-            <div class="card-slot" onclick="rotate(this)">
-                <div class="card-frame front">
+            <div class="card-slot" onclick="flipCard(this)">
+                <div class="card-frame front-up">
                     <img src="images/front_deck.png" />
                 </div>
 
-                <div class="card-frame back">
+                <div class="card-frame back-down">
                     <img src="images/bobrossparrot.gif" />
                 </div>
             </div>
@@ -48,9 +48,25 @@
     </body>
 
     <script>
-        function rotate(element) {
-            if (element.classList.contains(""))
-            element.classList.toggle("black-bg")
+        function flipCard(element) {            
+            //element.classList.toggle("black-bg");
+            let cardFront = element.querySelector(".front-up");
+            let cardBack = element.querySelector(".back-down");
+            if (cardFront !== null && cardBack !== null) {
+                cardFront.classList.replace("front-up", "front-down");
+                cardBack.classList.replace("back-down", "back-up");
+                return;
+            }
+
+            cardFront = element.querySelector(".front-down");
+            cardBack = element.querySelector(".back-up");
+            if (cardFront !== null && cardBack !== null) {
+                //element.classList.toggle("black-bg");
+                cardFront.classList.replace("front-down", "front-up");
+                cardBack.classList.replace("back-up", "back-down");
+                return;
+            }
+                 
         }
 
 
