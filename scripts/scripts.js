@@ -16,8 +16,25 @@ function askQuantity() {
 //      div contains ONE front img and ONE array element!
 
 const gameCards = [];
-console.log("array length: " + gameCards.length);
-//function shuffleArrayofCards(quantity) 
+let shuffledCards = [];
+function randomComparator() {
+    return Math.random() - 0.5;
+}
+function randomizeArrayofCards(quantity) {
+    gameCards[0] = "images/bobrossparrot.gif";
+    gameCards[1] = "images/explodyparrot.gif";
+    gameCards[2] = "images/fiestaparrot.gif";
+    gameCards[3] = "images/metalparrot.gif";
+    gameCards[4] = "images/revertitparrot.gif";
+    gameCards[5] = "images/tripletsparrot.gif";
+    gameCards[6] = "images/unicornparrot.gif";
+    console.log("before: " + gameCards.toString());
+    
+    //shuffling:
+    shuffledCards = gameCards.sort(randomComparator);
+    console.log("after: " + shuffledCards.toString());
+}
+randomizeArrayofCards();
 
 //# of divs == # of cards: (the div contains the array element)
 createCardSlots(numberOfCards);
