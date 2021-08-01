@@ -58,7 +58,7 @@ createCardSlots(numberOfCards);
 function createCardSlots(quantity) {    //creates # of divs according to user input
     let newDivCard;
     let newImg;
-    for (counter = 0; counter < quantity; counter++) {
+    for (i = 0; i < quantity; i++) {
         //create <div>:
         newDivCard = document.createElement("div");
         newDivCard.className = "card-slot";
@@ -67,17 +67,17 @@ function createCardSlots(quantity) {    //creates # of divs according to user in
 
         //create and add front <img> (parrot):
         newImg = document.createElement("img");
-        //newImg.setAttribute("src", "images/front_deck.png");
+        newImg.setAttribute("src", "images/front_deck.png");
         newImg.className = "default-deck-image";
         newDivCard.appendChild(newImg);
 
         //create and add back <img> (gif):
         newImg = document.createElement("img");
-        newImg.setAttribute("src", gameCards[counter]);
+        newImg.setAttribute("src", gameCards[i]);
         newImg.className = "bob";
         newDivCard.appendChild(newImg);
 
         //append card-slot-div to main-content div:
-        document.querySelector(".main-content").appendChild(newDivCard);
+        document.querySelector(".main-container").appendChild(newDivCard);
     }
 }

@@ -21,7 +21,7 @@ body {
     font-size: 56px;
 }
 
-.main-content {
+.main-container {
     max-width: 1080px;
     margin: auto;
     display: flex;
@@ -32,61 +32,37 @@ body {
 }
 
 .card-slot {
+    margin: 17px;
+}
+
+.card-frame {
     width: 117px;
     height: 146px;
-    margin: 17px;
     display: flex;
     justify-content: center;
     align-items: center;
+    position: absolute;
     border-radius: 5px;
     background-color: #a7e9af;
     border: 1px solid #99cea8;
+    backface-visibility: hidden;
+    transition: all 500ms;
+    transform-style: preserve-3d;
 }
 
-.card-slot img {
+.card-frame img {
     width: 100px;
     height: 100px;
 }
 
-/*--------------------------------------------------*/
-/*
-.card-frame {
-    width: 100%;
-    height: 100%;
-    background-color: lightskyblue;// #A7E9AF;
-    border-radius: 10px;
-    box-shadow: 1px 1px 1px rgba(0,0,0,.3);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: absolute;
-    backface-visibility: hidden;
-    transition: all .5s;
-    transform-style: preserve-3d;
-}
-
-.flippable-card {
-    width: 117px;
-    height: 146px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: relative;
-}
-
-
-
-.verso {
+.front {
     transform: rotateY(180deg);
-  }
 
-.verso2 {
+}
+
+.back {
     transform: rotateY(0deg);
-  }
-
-.frente {
-    transform: rotateY(-180deg);
-  }
+}
 
 .black-bg {
     background-color: black;
@@ -94,13 +70,12 @@ body {
 }
 
 
-*/
 
 /*--------------------------------------------------*/
 
 
 @media (max-width: 335px) {
-    .main-content {
+    .main-containter {
         max-width: 335px;
         flex-direction: column;
     }

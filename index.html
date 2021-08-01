@@ -11,7 +11,7 @@
 
         <link rel="stylesheet" href="css/reset.css" />
         <link rel="stylesheet" href="css/styles.css" />
-        
+
         <title>Parrot Card Game</title>
     </head>
 
@@ -19,19 +19,42 @@
         <div class="game-title">
             <h1> PARROT CARD GAME</h1>
         </div>
-        
-        <div class="main-content">
-                        
+
+        <div class="main-container">
+
             <!-- divs for cards will be placed here -->
             <!-- div card-slot -->
-                <!-- img: parrot (default) -->
-                <!-- img: gif -->
+            <!-- img: parrot (default) -->
+            <!-- img: gif -->
             <!-- /div   -->
+            <div class="card-slot" onclick="rotate(this)">
+                <div class="card-frame front">
+                    <img src="images/front_deck.png" />
+                </div>
+
+                <div class="card-frame back">
+                    <img src="images/bobrossparrot.gif" />
+                </div>
+            </div>
+
+
         </div>
-        
+
         <!-- script runs after page loaded because of some querySelectors -->
+        <!--
         <script src="scripts/scripts.js"></script>
-    
+        -->
+
     </body>
+
+    <script>
+        function rotate(element) {
+            if (element.classList.contains(""))
+            element.classList.toggle("black-bg")
+        }
+
+
+
+    </script>
 
 </html>
