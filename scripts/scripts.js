@@ -1,22 +1,18 @@
-const numberOfCards = askQuantity();
+const numberOfCards = askQuantity();    //# of cards for user to play with
 function askQuantity() {
     let howManyCards = 0;
     do {
         howManyCards = parseInt(prompt("Com quantas cartas você deseja jogar?"));
-        console.log(typeof (howManyCards));
-        console.log(howManyCards + ", fornecido");
     } while ((howManyCards % 2 !== 0) || !((howManyCards >= 4) && (howManyCards <= 14)));
-    console.log(howManyCards + " continuar");
-
+    
     return howManyCards;
 }
-
 
 //structure:
 //  array element contains gifs and "content" of the card;
 //      div contains ONE front img and ONE array element!
 
-
+const fixedCards = initializeAllCards();    //all 7 gifs available before starting
 function initializeAllCards() {
     let allCards = [];
     allCards.length = 7;
@@ -27,40 +23,34 @@ function initializeAllCards() {
     allCards[4] = "images/revertitparrot.gif";
     allCards[5] = "images/tripletsparrot.gif";
     allCards[6] = "images/unicornparrot.gif";
-    console.log("allCards, original: " + allCards.toString());
-
+    
     //shuffle full array of cards:
     allCards = allCards.sort(randomComparator);
-    console.log("allCards, shuffled: " + allCards.toString());
-
+    
     return allCards;
 }
 function randomComparator() {
     return Math.random() - 0.5;
 }
-const fixedCards = initializeAllCards();
 
-function distributeCards() {
+
+const gameCards = distributeCards(numberOfCards);    //# of cards chosen, randomized
+function distributeCards(quantity) {
     let temporaryCards = [];
-    temporaryCards.length = numberOfCards;
-    console.log(fixedCards.toString());
-    console.log(temporaryCards.toString());
-
-    for (let i = 0; i < numberOfCards/2; i++) {
+    temporaryCards.length = quantity;
+    
+    for (let i = 0; i < quantity/2; i++) {
         temporaryCards[i] = fixedCards[i];
     }
-    console.log(temporaryCards.toString());
-
-    for (let j = numberOfCards/2; j < numberOfCards; j++) {
-        temporaryCards[j] = temporaryCards[j % (numberOfCards/2)];
+    
+    for (let j = quantity/2; j < quantity; j++) {
+        temporaryCards[j] = temporaryCards[j % (quantity/2)];
     }
-    console.log(temporaryCards.toString());
-
+    
     temporaryCards = temporaryCards.sort(randomComparator);
 
     return temporaryCards;
 }
-const gameCards = distributeCards();
 
 
 //# of divs == # of cards: (the div contains the array element)
@@ -91,9 +81,3 @@ function createCardSlots(quantity) {    //creates # of divs according to user in
         document.querySelector(".main-content").appendChild(newDivCard);
     }
 }
-
-/*
-SID: armazenar o div por completo, talvez possa complicar
-na hora de embaralhar as cartas, alternativa seria armazenar
-apenas o caminho da imagem no array e gerar as divs por outra função. Entende?
- */
