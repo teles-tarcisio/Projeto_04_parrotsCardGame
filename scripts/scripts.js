@@ -94,12 +94,31 @@ function createCardSlots(quantity) {    //creates # of divs according to user in
     }
 }
 
-function flipCard(element) {            
+
+function maxTwoFlipped(element) {
+    //element is qS(".card-slot")
+    //element.parentElement is ".main-container"
+
+    //flippedCardsList is a nodelist with ".back-up"
+    let flippedCardsList = element.parentElement.querySelectorAll(".back-up");
+    
+    return flippedCardsList.length;
+}
+
+function flipCard(element) {    //element = qS(".card-slot")     
     let cardFront = element.querySelector(".front-up");
     let cardBack = element.querySelector(".back-down");
-    if (cardFront !== null && cardBack !== null) {
+    
+    if(maxTwoFlipped(element) == 2) {
+        console.log("unflip one first!");
+        return;
+    }
+    
+    
+    if (cardBack !== null) {
         cardFront.classList.replace("front-up", "front-down");
         cardBack.classList.replace("back-down", "back-up");
+        //checkPair(element);
         return;
     }
 
@@ -109,6 +128,15 @@ function flipCard(element) {
         //element.classList.toggle("black-bg");
         cardFront.classList.replace("front-down", "front-up");
         cardBack.classList.replace("back-up", "back-down");
+        //checkPair(element);
         return;
     }
+}
+
+function checkPair(element) {   //element = qS(".card-slot")
+    let flippedCardsList = element.querySelectorAll(".back-up");
+    for (let i = 0; i < flippedCardsList.length; i++) {
+
+    }
+
 }
