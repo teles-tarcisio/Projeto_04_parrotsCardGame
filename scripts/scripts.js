@@ -104,6 +104,7 @@ function howManyFlipped(element) {
     return (flippedQuantity);
 }
 
+let totalMoves = 0;
 function flipCard(element) {    //element = qS(".card-slot")     
     let cardFront = element.querySelector(".front-down");
     let cardBack = element.querySelector(".back-up");
@@ -135,11 +136,13 @@ function flipCard(element) {    //element = qS(".card-slot")
             //2.2: qtty == 2, check if pair matches
 
             if (checkPair(element)) {
-                console.log("matched a pair!");
+                totalMoves++;                
                 return;
             }
             else {
                 console.log("call setTimeout and unflip cards");
+                setTimeout(clearFlipped, 1000);
+                totalMoves++;
                 return;
             }
         }
@@ -161,4 +164,12 @@ function checkPair(element) {   //element = qS(".card-slot")
         return false;
     }
 
+}
+
+function clearFlipped() {
+    let allFlippedUnmatched = document.querySelectorAll(".unmatched .card-frame");
+    for (let i = 0; i < allFlippedUnmatched.length; i++) {
+        allFlippedUnmatched[i].classList.replace("back-up", "back-down");
+        allFlippedUnmatched[i].classList.replace("front-down", "front-up");
+    } 
 }
