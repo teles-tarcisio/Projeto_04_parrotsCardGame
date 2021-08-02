@@ -141,7 +141,6 @@ function flipCard(element) {    //element = qS(".card-slot")
                 return;
             }
             else {
-                console.log("call setTimeout and unflip cards");
                 setTimeout(clearFlipped, 1000);
                 totalMoves++;
                 return;
