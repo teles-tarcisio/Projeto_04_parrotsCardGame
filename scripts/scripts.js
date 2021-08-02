@@ -4,7 +4,7 @@ function askQuantity() {
     do {
         howManyCards = parseInt(prompt("Com quantas cartas você deseja jogar?"));
     } while ((howManyCards % 2 !== 0) || !((howManyCards >= 4) && (howManyCards <= 14)));
-    
+
     return howManyCards;
 }
 
@@ -23,10 +23,10 @@ function initializeAllCards() {
     allCards[4] = "images/revertitparrot.gif";
     allCards[5] = "images/tripletsparrot.gif";
     allCards[6] = "images/unicornparrot.gif";
-    
+
     //shuffle full array of cards:
     allCards = allCards.sort(randomComparator);
-    
+
     return allCards;
 }
 function randomComparator() {
@@ -38,15 +38,15 @@ const gameCards = distributeCards(numberOfCards);    //# of cards chosen, random
 function distributeCards(quantity) {
     let temporaryCards = [];
     temporaryCards.length = quantity;
-    
-    for (let i = 0; i < quantity/2; i++) {
+
+    for (let i = 0; i < quantity / 2; i++) {
         temporaryCards[i] = fixedCards[i];
     }
-    
-    for (let j = quantity/2; j < quantity; j++) {
-        temporaryCards[j] = temporaryCards[j % (quantity/2)];
+
+    for (let j = quantity / 2; j < quantity; j++) {
+        temporaryCards[j] = temporaryCards[j % (quantity / 2)];
     }
-    
+
     temporaryCards = temporaryCards.sort(randomComparator);
 
     return temporaryCards;
@@ -63,7 +63,7 @@ function createCardSlots(quantity) {    //creates # of divs according to user in
     for (i = 0; i < quantity; i++) {
         //create <div> card-slot:
         newCardSlot = document.createElement("div");
-        newCardSlot.className = "card-slot";
+        newCardSlot.className = "card-slot unmatched";
         newCardSlot.setAttribute("onclick", "flipCard(this)");
 
         //create <div> card-frame (front):
@@ -74,7 +74,7 @@ function createCardSlots(quantity) {    //creates # of divs according to user in
         newImg = document.createElement("img");
         newImg.setAttribute("src", "images/front_deck.png");
         newCardFrame.appendChild(newImg);
-        
+
         newCardSlot.appendChild(newCardFrame);
 
         //create <div> card-frame (back):
@@ -94,49 +94,71 @@ function createCardSlots(quantity) {    //creates # of divs according to user in
     }
 }
 
-
-function maxTwoFlipped(element) {
+function howManyFlipped(element) {
     //element is qS(".card-slot")
     //element.parentElement is ".main-container"
 
     //flippedCardsList is a nodelist with ".back-up"
-    let flippedCardsList = element.parentElement.querySelectorAll(".back-up");
-    
-    return flippedCardsList.length;
+    let flippedCardsList = element.parentElement.querySelectorAll(".unmatched .back-up");
+    let flippedQuantity = parseInt(flippedCardsList.length);
+    return (flippedQuantity);
 }
 
 function flipCard(element) {    //element = qS(".card-slot")     
-    let cardFront = element.querySelector(".front-up");
-    let cardBack = element.querySelector(".back-down");
-    
-    if(maxTwoFlipped(element) == 2) {
-        console.log("unflip one first!");
-        return;
-    }
-    
-    
-    if (cardBack !== null) {
-        cardFront.classList.replace("front-up", "front-down");
-        cardBack.classList.replace("back-down", "back-up");
-        //checkPair(element);
-        return;
-    }
+    let cardFront = element.querySelector(".front-down");
+    let cardBack = element.querySelector(".back-up");
 
-    cardFront = element.querySelector(".front-down");
-    cardBack = element.querySelector(".back-up");
-    if (cardFront !== null && cardBack !== null) {
-        //element.classList.toggle("black-bg");
-        cardFront.classList.replace("front-down", "front-up");
-        cardBack.classList.replace("back-up", "back-down");
-        //checkPair(element);
+    //step 0: check if card is already matched:
+    if (element.classList.contains("matched")) {
         return;
+    }
+    else if (element.classList.contains("unmatched")) {
+
+        //step 1: check if card is flipped: 
+        if ((cardFront !== null) && (cardBack !== null)) { //card has backside UP
+            cardFront.classList.replace("front-down", "front-up");
+            cardBack.classList.replace("back-up", "back-down");
+            return;
+        }
+
+        //step 2: if card is not flipped, check qtty:
+        if (howManyFlipped(element) <= 1) {
+            //2.1: qtty < 2, flip card
+            cardFront = element.querySelector(".front-up");
+            cardBack = element.querySelector(".back-down");
+            if ((cardFront !== null) && (cardBack !== null)) {
+                cardFront.classList.replace("front-up", "front-down");
+                cardBack.classList.replace("back-down", "back-up");
+            }
+        }
+        if (howManyFlipped(element) === 2) {
+            //2.2: qtty == 2, check if pair matches
+
+            if (checkPair(element)) {
+                console.log("matched a pair!");
+                return;
+            }
+            else {
+                console.log("call setTimeout and unflip cards");
+                return;
+            }
+        }
     }
 }
 
-function checkPair(element) {   //element = qS(".card-slot")
-    let flippedCardsList = element.querySelectorAll(".back-up");
-    for (let i = 0; i < flippedCardsList.length; i++) {
 
+function checkPair(element) {   //element = qS(".card-slot")
+    let flippedCardsList = element.parentElement.querySelectorAll(".unmatched .back-up");
+    if (flippedCardsList[0].innerHTML === flippedCardsList[1].innerHTML) {
+        flippedCardsList[0].parentElement.classList.replace("unmatched", "matched");
+        flippedCardsList[0].parentElement.removeAttribute("onclick");
+        flippedCardsList[1].parentElement.classList.replace("unmatched", "matched");
+        flippedCardsList[1].parentElement.removeAttribute("onclick");
+
+        return true;
+    }
+    else {
+        return false;
     }
 
 }
