@@ -11,7 +11,6 @@ body {
     max-width: 1080px;
     text-align: center;
     text-justify: center;
-    border: 1px dashed lightslategray;
 }
 
 .game-title h1 {
@@ -28,7 +27,6 @@ body {
     justify-content: center;
     flex-wrap: wrap;
     align-items: center;
-    border: 1px dashed blue;
 }
 
 .card-slot {

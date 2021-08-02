@@ -9,7 +9,7 @@ function askQuantity() {
 }
 
 //structure:
-//  array element contains gifs and "content" of the card;
+//  array element contains parrot gifs;
 //      div contains ONE front img and ONE array element!
 
 const fixedCards = initializeAllCards();    //all 7 gifs available before starting
@@ -53,7 +53,7 @@ function distributeCards(quantity) {
 }
 
 
-//# of divs == # of cards: (the div contains the array element)
+//# of divs == # of cards:
 createCardSlots(numberOfCards);
 function createCardSlots(quantity) {    //creates # of divs according to user input
     let newCardSlot;
@@ -136,7 +136,8 @@ function flipCard(element) {    //element = qS(".card-slot")
             //2.2: qtty == 2, check if pair matches
 
             if (checkPair(element)) {
-                totalMoves++;                
+                totalMoves++;
+                checkVictory();            
                 return;
             }
             else {
@@ -165,6 +166,15 @@ function checkPair(element) {   //element = qS(".card-slot")
     }
 
 }
+
+function checkVictory() {
+    let allUnmatched = document.querySelectorAll(".unmatched");
+    let allMatched = document.querySelectorAll(".matched");
+    if ((allUnmatched.length === 0) && (allMatched.length === numberOfCards)) {
+        alert("Você ganhou em " + totalMoves + " jogadas!");
+    }
+}
+
 
 function clearFlipped() {
     let allFlippedUnmatched = document.querySelectorAll(".unmatched .card-frame");
